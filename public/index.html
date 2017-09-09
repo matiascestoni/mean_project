@@ -31,9 +31,60 @@
 <body ng-controller="mainController">
 	<div class="container">
 
+        <!-- MENU HEADER -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About US</a></li>
+                    </ul>
+                    <p class="nav navbar-text navbar-right">Hello, Matias</p>
+                </div>
+            </div>
+        </div>
+<!-- TABLE
+        <table cellpadding=10 cellspacing=10 border=0 class="table">
+            <tr>
+                <th>No.</th>
+                <th ng-click="sort('firstname')">First Name
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='firstname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('lastname')">Last Name
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('type')">Type
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='type'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('active')">Active
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+
+            <tr dir-paginate="user in users|orderBy:sortKey:reverse|filter:search:type|itemsPerPage:actItem" ng-class="$even ? 'even-row' : 'odd-row'">
+                <td>{{$index+1}}</td>
+                <td>{{user.firstname | uppercase}}</td>
+                <td>{{user.lastname | lowercase | limitTo: 2}}</td>
+                <td>{{user.type}}</td>
+                <td>{{user.active}}</td>
+                <td><div ng-click="editUser(user)" class="btn btn-primary">E</div></td>
+                <td><span ng-click="deleteUser(user)" class="btn btn-danger">X</span></td>
+            </tr>
+        </table>
+-->
+
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>List size:<span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
@@ -43,6 +94,7 @@
 				
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+
 				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
 						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
@@ -52,6 +104,7 @@
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
+
 
 			</div>
 		</div>
@@ -63,18 +116,14 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="formData.text">
+						<!-- createToDo() WILL CREATE NEW TODOS -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>
-			</div>
-		</div>
 
-		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+			</div>
 		</div>
 
 	</div>
