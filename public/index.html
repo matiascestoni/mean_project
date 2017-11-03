@@ -3,130 +3,114 @@
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="scotchTodo">
 <head>
-	<!-- META -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+    <title>Node/Angular Todo App</title>
 
-	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
-	</style>
+
+    </style>
 
 	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script><!-- load angular -->
 
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/todos.js"></script> <!-- load our todo service -->
-	<script src="js/core.js"></script> <!-- load our main application -->
+    <!-- Application Scripts -->
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/todos.js"></script> <!-- load our todo service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainController">
-	<div class="container">
+<div class="container">
 
-        <!-- MENU HEADER -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About US</a></li>
-                    </ul>
-                    <p class="nav navbar-text navbar-right">Hello, Matias</p>
-                </div>
+    <!-- MENU HEADER -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About US</a></li>
+                </ul>
+                <p class="nav navbar-text navbar-right">Hello, Matias</p>
             </div>
         </div>
-<!-- TABLE
-        <table cellpadding=10 cellspacing=10 border=0 class="table">
-            <tr>
-                <th>No.</th>
-                <th ng-click="sort('firstname')">First Name
-                    <span class="glyphicon sort-icon" ng-show="sortKey=='firstname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                </th>
-                <th ng-click="sort('lastname')">Last Name
-                    <span class="glyphicon sort-icon" ng-show="sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                </th>
-                <th ng-click="sort('type')">Type
-                    <span class="glyphicon sort-icon" ng-show="sortKey=='type'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                </th>
-                <th ng-click="sort('active')">Active
-                    <span class="glyphicon sort-icon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                </th>
-                <th>UPDATE</th>
-                <th>DELETE</th>
-            </tr>
+    </div>
 
-            <tr dir-paginate="user in users|orderBy:sortKey:reverse|filter:search:type|itemsPerPage:actItem" ng-class="$even ? 'even-row' : 'odd-row'">
-                <td>{{$index+1}}</td>
-                <td>{{user.firstname | uppercase}}</td>
-                <td>{{user.lastname | lowercase | limitTo: 2}}</td>
-                <td>{{user.type}}</td>
-                <td>{{user.active}}</td>
-                <td><div ng-click="editUser(user)" class="btn btn-primary">E</div></td>
-                <td><span ng-click="deleteUser(user)" class="btn btn-danger">X</span></td>
-            </tr>
-        </table>
--->
+    <table cellpadding=10 cellspacing=10 border=0 class="table">
+        <tr>
+            <th>Index</th>
+            <th ng-click="sort('id')">ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='id'"
+                      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th ng-click="sort('text')">Text
+                <span class="glyphicon sort-icon" ng-show="sortKey=='text'"
+                      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th ng-click="sort('type')">Type
+                <span class="glyphicon sort-icon" ng-show="sortKey=='type'"
+                      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th ng-click="sort('active')">Active
+                <span class="glyphicon sort-icon" ng-show="sortKey=='active'"
+                      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
 
-		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
-			<h1>List size:<span class="label label-info">{{ todos.length }}</span></h1>
-		</div>
+        <tr ng-repeat="todo in todos">
+            <td>{{$index+1}}</td>
+            <td>{{todo._id}}</td>
+            <td>{{todo.text}}</td>
+            <td></td>
+            <td></td>
+            <td>
+                <div ng-click="" class="btn btn-primary">E</div>
+            </td>
+            <td><span ng-click="deleteTodo(todo._id)" class="btn btn-danger">X</span></td>
+        </tr>
+    </table>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+    <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
 
-				
+                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                    <input type="text" class="form-control input-lg text-center" placeholder="id" ng-model="formData._id">
+                    <input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="formData.text">
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="updateTodo()">Update</button>
+                </div>
 
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+            </form>
 
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
-				</div>
+        </div>
+    </div>
 
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
+</div>
 
-
-			</div>
-		</div>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="formData.text">
-						<!-- createToDo() WILL CREATE NEW TODOS -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-					</div>
-
-				</form>
-
-			</div>
-		</div>
-
-	</div>
 
 </body>
 </html>

@@ -9,8 +9,8 @@ angular.module('todoController', [])
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
 		Todos.get()
-			.success(function(data) {
-				$scope.todos = data;
+			.then(function(response) {
+				$scope.todos = response.data;
 				$scope.loading = false;
 			});
 
@@ -27,10 +27,10 @@ angular.module('todoController', [])
 				Todos.create($scope.formData)
 
 					// if successful creation, call our get function to get all the new todos
-					.success(function(data) {
+					.then(function(response) {
 						$scope.loading = false;
 						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.todos = data; // assign our new list of todos
+						$scope.todos = response.data; // assign our new list of todos
 					});
 			}
 		};
@@ -41,17 +41,17 @@ angular.module('todoController', [])
 
             // validate the formData to make sure that something is there
             // if form is empty, nothing will happen
-            if ($scope.formData.text != undefined) {
+            if ($scope.formData._id != undefined) {
                 $scope.loading = true;
 
                 // call the use function from our service (returns a promise object)
-                Todos.use($scope.formData)
+                Todos.patch($scope.formData)
 
                     // if update is successful, call our get function to get all the new todos
-                    .success(function(data) {
+                    .then(function(response) {
                         $scope.loading = false;
                         $scope.formData = {}; // clear the form so our user is ready to enter another
-                        $scope.todos = data; // assign our new list of todos
+                        $scope.todos = response.data; // assign our new list of todos
                     });
             }
         };
@@ -63,9 +63,9 @@ angular.module('todoController', [])
 
 			Todos.delete(id)
 				// if successful creation, call our get function to get all the new todos
-				.success(function(data) {
+				.then(function(response) {
 					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
+					$scope.todos = response.data; // assign our new list of todos
 				});
 		};
 	}]);
