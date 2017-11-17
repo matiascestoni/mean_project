@@ -1,40 +1,32 @@
 <!doctype html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="scotchTodo" xmlns:column-count="http://www.w3.org/1999/xhtml">
 <head>
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Node/Angular Todo App</title>
 
-    <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <!-- load bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
-		#todo-list 				{ margin-bottom:30px; }
-		#todo-form 	 			{ margin-bottom:50px; }
-
+		#site-list 				{ margin-bottom:30px; }
+		#site-form 	 			{ margin-bottom:50px; }
+		.newspaper              { column-count: 3;}
     </style>
 
-	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script><!-- load angular -->
-
-    <!-- Application Scripts -->
-    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
-    <script src="js/services/todos.js"></script> <!-- load our todo service -->
-    <script src="js/core.js"></script> <!-- load our main application -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/services/services.js"></script>
+    <script src="js/core.js"></script>
 
 </head>
-<!-- SET THE CONTROLLER -->
+
 <body ng-controller="mainController">
 <div class="container">
 
-    <!-- MENU HEADER -->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -65,15 +57,10 @@
                 <span class="glyphicon sort-icon" ng-show="sortKey=='text'"
                       ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
-            <th ng-click="sort('type')">Type
+            <th ng-click="sort('type')">Trusted Site
                 <span class="glyphicon sort-icon" ng-show="sortKey=='type'"
                       ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
-            <th ng-click="sort('active')">Active
-                <span class="glyphicon sort-icon" ng-show="sortKey=='active'"
-                      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-            </th>
-            <th>UPDATE</th>
             <th>DELETE</th>
         </tr>
 
@@ -81,27 +68,18 @@
             <td>{{$index+1}}</td>
             <td>{{todo._id}}</td>
             <td>{{todo.text}}</td>
-            <td></td>
-            <td></td>
-            <td>
-                <div ng-click="" class="btn btn-primary">E</div>
-            </td>
-            <td><span ng-click="deleteTodo(todo._id)" class="btn btn-danger">X</span></td>
+            <td>{{todo.trusted}}</td>
+            <td><span ng-click="deleteSite(todo._id)" class="btn btn-danger">X</span></td>
         </tr>
     </table>
 
-    <!-- FORM TO CREATE TODOS -->
-    <div id="todo-form" class="row">
-        <div class="col-sm-8 col-sm-offset-2 text-center">
+    <div id="site-form" class="row">
+        <div class="newspaper">
             <form>
                 <div class="form-group">
-
-                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                    <input type="text" class="form-control input-lg text-center" placeholder="id" ng-model="formData._id">
                     <input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="formData.text">
-                    <!-- createToDo() WILL CREATE NEW TODOS -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="updateTodo()">Update</button>
+                    <input type="text" class="form-control input-lg text-center" placeholder="trusted" ng-model="formData.trusted">
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createSite()">Add</button>
                 </div>
 
             </form>
